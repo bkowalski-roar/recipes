@@ -2,6 +2,8 @@
 require 'spec_helper'
 require 'support/database_cleaner'
 require 'support/factory_bot'
+require 'support/request_helpers'
+
 
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
@@ -57,4 +59,5 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  config.include Requests::JsonHelpers, type: :request
 end

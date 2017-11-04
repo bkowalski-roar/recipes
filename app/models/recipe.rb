@@ -1,4 +1,6 @@
 class Recipe < ApplicationRecord
+  has_many :stages
+
   validates :title, presence: true
   validates :slug, presence: true
 
