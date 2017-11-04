@@ -6,6 +6,9 @@ module Api
         render json: Recipe.all
       end
 
+      def show
+        render json: Recipe.find_by(slug: params[:slug])
+      end
     end
   end
 end
