@@ -107,6 +107,10 @@ GEM
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    rspec (3.7.0)
+      rspec-core (~> 3.7.0)
+      rspec-expectations (~> 3.7.0)
+      rspec-mocks (~> 3.7.0)
     rspec-core (3.7.0)
       rspec-support (~> 3.7.0)
     rspec-expectations (3.7.0)
@@ -157,6 +161,7 @@ DEPENDENCIES
   pry
   puma (~> 3.7)
   rails (~> 5.1.4)
+  rspec
   rspec-rails
   spring
   spring-watcher-listen (~> 2.0.0)
@@ -164,4 +169,4 @@ DEPENDENCIES
   tzinfo-data
 
 BUNDLED WITH
-   1.14.6
+   1.16.0
