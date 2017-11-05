@@ -38,6 +38,7 @@ describe 'Recipe api' do
     expect(response).to be_succes
     expect(json['title']).not_to be_nil
     expect(json['steps']).not_to be_nil
+    expect(json['ingredients']).not_to be_nil
   end
 
   it 'loads recipe steps' do
