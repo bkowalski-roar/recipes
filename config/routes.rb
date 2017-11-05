@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :recipes, only: [:index, :show], param: :slug do
         resources :stages, only: :show do
           resources :steps, only: :index
+          resources :ingredients, only: :index
         end
       end
     end
