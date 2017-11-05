@@ -2,11 +2,11 @@ require 'rails_helper'
 
 describe 'Recipe api' do
   let(:recipe) {create :recipe}
-  let(:recipe_with_stages) { create :recipe_with_stages }
+  let(:full_recipe) { create :full_recipe }
 
   before do
     recipe
-    recipe_with_stages
+    full_recipe
   end
 
   it 'retrieves recipe list' do
@@ -29,7 +29,7 @@ describe 'Recipe api' do
   end
 
   it 'loads recipe stages' do
-    get "/api/v1/recipes/#{recipe_with_stages.slug}/stages/#{recipe_with_stages.stages.first.id}"
+    get "/api/v1/recipes/#{full_recipe.slug}/stages/#{full_recipe.stages.first.id}"
 
     expect(response).to be_succes
     expect(json['title']).not_to be_nil
