@@ -32,6 +32,8 @@ describe 'Recipe api' do
     get "/api/v1/recipes/#{recipe_with_stages.slug}/stages/#{recipe_with_stages.stages.first.id}"
 
     expect(response).to be_succes
+    expect(json['title']).not_to be_nil
+    expect(json['steps']).not_to be_nil
   end
 
 end
