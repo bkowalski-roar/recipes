@@ -18,4 +18,20 @@ recipes.each do |recipe|
   recipe.stages.create(title: 'stage2')
 end
 
+ingredients = []
+
+5.times do |n|
+  ingredients << Ingredient.create(name: "Ingredient#{n}", description: 'Lorem ipsum')
+end
+
+Stage.find_each do |stage|
+  2.times do |n|
+    stage.steps.create(content: "Lorem ipsum #{n}")
+  end
+
+  5.times do |n|
+    stage.ingredients << ingredients[n]
+  end
+end
+
 p 'seed success!'
