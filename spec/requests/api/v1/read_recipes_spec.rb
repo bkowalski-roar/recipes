@@ -46,4 +46,13 @@ describe 'Read recipe api' do
     json.each { |step| expect(step['content']).not_to be_nil }
   end
 
+  it 'loads recipe ingredients' do
+    get "/api/v1/recipes/#{recipe.slug}/stages/#{recipe.stages.first.id}/ingredients"
+
+    expect(response).to be_succes
+    json.each do |step|
+      expect(step['name']).not_to be_nil
+      expect(step['description']).not_to be_nil
+    end
+  end
 end
