@@ -11,7 +11,11 @@ recipes = [
     Recipe.new(title: 'Zupa pomidorowa z pieczonych pomidorów - najlepsza na świecie :) - film video HD', description: 'Zupa pomidorowa z pieczonych pomidorów jest po prostu najlepsza na świecie. Głęboki smak pomidorów i czosnku sprawia, że zupa jest bardzo aromatyczna. Do tego tymianek i świeża bazylia, a także pieczo...')
 ]
 
-recipes.each { |r| r.slug = r.generate_slug; r.save!}
+recipes.each do |r|
+  r.slug = r.generate_slug
+  r.published = true
+  r.save!
+end
 
 recipes.each do |recipe|
   recipe.stages.create(title: 'stage1')
