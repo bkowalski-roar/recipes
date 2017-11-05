@@ -13,4 +13,9 @@ recipes = [
 
 recipes.each { |r| r.slug = r.generate_slug; r.save!}
 
+recipes.each do |recipe|
+  recipe.stages.create(title: 'stage1')
+  recipe.stages.create(title: 'stage2')
+end
+
 p 'seed success!'
