@@ -14,13 +14,15 @@ describe 'Recipe api' do
     get '/api/v1/recipes'
 
     expect(response).to be_succes
-    expect(json[0]['title']).not_to be_nil
-    expect(json[0]['slug']).not_to be_nil
-    expect(json[0]['created_at']).to be_nil
+    json.each do |recipe|
+      expect(recipe['title']).not_to be_nil
+      expect(recipe['slug']).not_to be_nil
+      expect(recipe['created_at']).to be_nil
+    end
   end
 
   it 'shows single recipe' do
-    get "/api/v1/recipes/#{recipe.slug}"
+    get "/api/v1/recipes/#{full_recipe.slug}"
 
     expect(response).to be_succes
 
@@ -42,7 +44,7 @@ describe 'Recipe api' do
     get "/api/v1/recipes/#{full_recipe.slug}/stages/#{full_recipe.stages.first.id}/steps"
 
     expect(response).to be_succes
-    expect(json['content']).not_to be_nil
+    json.each { |step| expect(step['content']).not_to be_nil }
   end
 
 end
