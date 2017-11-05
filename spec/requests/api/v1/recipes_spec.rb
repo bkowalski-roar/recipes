@@ -16,6 +16,7 @@ describe 'Recipe api' do
     expect(response).to be_succes
     expect(json[0]['title']).not_to be_nil
     expect(json[0]['slug']).not_to be_nil
+    expect(json[0]['created_at']).to be_nil
   end
 
   it 'shows single recipe' do
@@ -26,6 +27,7 @@ describe 'Recipe api' do
     expect(json['title']).not_to be_nil
     expect(json['slug']).to be_nil
     expect(json['stages']).not_to be_nil
+    expect(json['created_at']).not_to be_nil
   end
 
   it 'loads recipe stages' do
@@ -34,6 +36,13 @@ describe 'Recipe api' do
     expect(response).to be_succes
     expect(json['title']).not_to be_nil
     expect(json['steps']).not_to be_nil
+  end
+
+  it 'loads recipe steps' do
+    get "/api/v1/recipes/#{full_recipe.slug}/stages/#{full_recipe.stages.first.id}/steps"
+
+    expect(response).to be_succes
+    expect(json['content']).not_to be_nil
   end
 
 end
