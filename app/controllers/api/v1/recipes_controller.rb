@@ -3,7 +3,7 @@ module Api
     class RecipesController < ApplicationController
 
       def index
-        render json: Recipe.all
+        render json: Recipe.all, each_serializer: RecipePreviewSerializer
       end
 
       def show
