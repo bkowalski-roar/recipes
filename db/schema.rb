@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171105142501) do
+ActiveRecord::Schema.define(version: 20171105215731) do
 
   create_table "ingredient_stages", force: :cascade do |t|
     t.integer "ingredient_id"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20171105142501) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "published", default: false, null: false
+    t.boolean "public", default: false, null: false
   end
 
   create_table "stages", force: :cascade do |t|
