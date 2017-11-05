@@ -1,4 +1,11 @@
 FactoryBot.define do
+  factory :stage do
+    sequence :title do |n|
+      "stage#{n}"
+    end
+    association :recipe
+  end
+
   factory :recipe do
     title 'sth'
     description 'sth'
@@ -6,15 +13,14 @@ FactoryBot.define do
       "sth#{n}"
     end
 
-    association :stages, factory: :stage
-    after_create do |recipe|
-      recipe.stages << create(:stage, 3)
-    end
-  end
+    factory :recipe_with_stages do
+      transient do
+        stage_count 3
+      end
 
-  factory :stage do
-    sequence :title do |n|
-      "stage#{n}"
+      after(:create) do |recipe, evaluator|
+        create_list(:stage, evaluator.stage_count, recipe: recipe)
+      end
     end
   end
 end
