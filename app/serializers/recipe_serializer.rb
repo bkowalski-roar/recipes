@@ -1,4 +1,4 @@
 class RecipeSerializer < ActiveModel::Serializer
-  attributes :id, :slug, :title, :description
-  has_many :stages
+  attributes :id, :title, :description
+  has_many :stages, serializer: StagePreviewSerializer
 end

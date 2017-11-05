@@ -16,7 +16,6 @@ describe 'Recipe api' do
     expect(response).to be_succes
     expect(json[0]['title']).not_to be_nil
     expect(json[0]['slug']).not_to be_nil
-    expect(json[0]['stages']).to be_nil
   end
 
   it 'shows single recipe' do
@@ -25,7 +24,6 @@ describe 'Recipe api' do
     expect(response).to be_succes
 
     expect(json['title']).not_to be_nil
-    expect(json['slug']).not_to be_nil
-    expect(json['stages']).not_to be_nil
+    expect(json['slug']).to be_nil
   end
 end
