@@ -38,7 +38,7 @@ FactoryBot.define do
       end
 
       after(:create) do |stage, evaluator|
-        create_list(:ingredient, evaluator.count, stage: stage)
+        create_list(:ingredient, evaluator.count, stages: [stage])
       end
     end
   end
