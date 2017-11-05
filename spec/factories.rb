@@ -7,19 +7,38 @@ FactoryBot.define do
     association :stage
   end
 
+  factory :ingredient do
+    sequence :name do |n|
+      "ingredient name no #{n}"
+    end
+    description 'simple description'
+  end
+
   factory :stage do
     sequence :title do |n|
       "stage#{n}"
     end
+
+    transient do
+      count 5
+    end
+
     association :recipe
 
-    factory :full_stage do
+    trait :with_steps do
+
+      after(:create) do |stage, evaluator|
+        create_list(:step, evaluator.count, stage: stage)
+      end
+    end
+
+    trait :with_ingredients do
       transient do
-        steps_count 5
+        ingredient_count 5
       end
 
       after(:create) do |stage, evaluator|
-        create_list(:step, evaluator.steps_count, stage: stage)
+        create_list(:ingredient, evaluator.count, stage: stage)
       end
     end
   end
@@ -31,13 +50,13 @@ FactoryBot.define do
       "sth#{n}"
     end
 
-    factory :full_recipe do
+    trait :with_full_stages do
       transient do
-        stage_count 3
+        count 3
       end
 
       after(:create) do |recipe, evaluator|
-        create_list(:full_stage, evaluator.stage_count, recipe: recipe)
+        create_list(:stage, evaluator.count, :with_steps, :with_ingredients, recipe: recipe)
       end
     end
   end

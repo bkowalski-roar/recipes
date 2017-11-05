@@ -1,12 +1,10 @@
 require 'rails_helper'
 
-describe 'Recipe api' do
-  let(:recipe) {create :recipe}
-  let(:full_recipe) { create :full_recipe }
+describe 'Read recipe api' do
+  let(:recipe) { create :recipe, :with_full_stages }
 
   before do
     recipe
-    full_recipe
   end
 
   it 'retrieves recipe list' do
@@ -22,7 +20,7 @@ describe 'Recipe api' do
   end
 
   it 'shows single recipe' do
-    get "/api/v1/recipes/#{full_recipe.slug}"
+    get "/api/v1/recipes/#{recipe.slug}"
 
     expect(response).to be_succes
 
@@ -33,7 +31,7 @@ describe 'Recipe api' do
   end
 
   it 'loads recipe stages' do
-    get "/api/v1/recipes/#{full_recipe.slug}/stages/#{full_recipe.stages.first.id}"
+    get "/api/v1/recipes/#{recipe.slug}/stages/#{recipe.stages.first.id}"
 
     expect(response).to be_succes
     expect(json['title']).not_to be_nil
@@ -42,7 +40,7 @@ describe 'Recipe api' do
   end
 
   it 'loads recipe steps' do
-    get "/api/v1/recipes/#{full_recipe.slug}/stages/#{full_recipe.stages.first.id}/steps"
+    get "/api/v1/recipes/#{recipe.slug}/stages/#{recipe.stages.first.id}/steps"
 
     expect(response).to be_succes
     json.each { |step| expect(step['content']).not_to be_nil }
