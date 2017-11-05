@@ -1,14 +1,17 @@
 require 'rails_helper'
 
 describe 'Recipe api' do
-  let(:recipe) { create :recipe }
-  let(:recipes) { create :recipe, 10 }
+  let(:recipe) {create :recipe}
+  let(:recipe_with_stages) { create :recipe_with_stages }
+
+  before do
+    recipe
+    recipe_with_stages
+  end
 
   it 'retrieves recipe list' do
-    recipe
-    get '/api/v1/recipes'
 
-    binding.pry
+    get '/api/v1/recipes'
 
     expect(response).to be_succes
     expect(json[0]['title']).not_to be_nil
